@@ -1,5 +1,7 @@
 import TodoDom from "./TodoDom";
 import { ItodoData } from "./typings";
+import {getTodoList} from "./TodoService";
+import {createTemplate} from "./utils";
 
 /**
  * 处理传入的数据类
@@ -9,7 +11,22 @@ class TodoEvent extends TodoDom {
   constructor(tododata: ItodoData[], domWrapper: HTMLElement) {
     super(domWrapper);
     this.tododata = tododata;
-    this.initList(tododata);
+    this.init(this.tododata);
+  }
+  // @ts-ignore
+  @getTodoList
+  protected init(todoData: ItodoData[]){
+    this.tododata = todoData;
+    this.initList(this.tododata)
+  }
+  protected initList(todoData: ItodoData[]):void {
+    this.tododata = todoData;
+    const oFrag = document.createDocumentFragment();
+    this.tododata.map((todo) => {
+      const oItem = createTemplate('div','todo-item',this.todoView(todo));
+      oFrag.appendChild(oItem);
+    })
+    this.domWrapper.appendChild(oFrag);
   }
   public addTodo(todo: ItodoData): undefined | number {
     const _todo: null | ItodoData = this.tododata.find((item) => { return todo.content === item.content });

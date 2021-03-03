@@ -3,22 +3,14 @@ import { ItodoData } from "./typings";
 import { createTemplate, findParentNode } from "./utils";
 
 class TodoDom extends TodoTemplate {
-  private domWrappeer: HTMLElement;
-  constructor(domWrapper: HTMLElement) {
+  protected domWrapper: HTMLElement;
+  constructor(domWrapper: HTMLElement,) {
     super();
-    this.domWrappeer = domWrapper;
-  }
-  protected initList(todoData: ItodoData[]) {
-    const oFrag = document.createDocumentFragment();
-    todoData.map((todo) => {
-      const oItem = createTemplate('div','todo-item',this.todoView(todo));
-      oFrag.appendChild(oItem);
-    })
-    this.domWrappeer.appendChild(oFrag);
+    this.domWrapper = domWrapper;
   }
   protected addItem(todo: ItodoData) {
     const oItem = createTemplate('div','todo-item',this.todoView(todo));
-    this.domWrappeer.appendChild(oItem);
+    this.domWrapper.appendChild(oItem);
   }
   protected removeItem(target: HTMLElement) {
     const oParentItem = findParentNode(target, 'todo-item');

@@ -4,23 +4,7 @@ import { ItodoData } from "./js/typings";
   const oInput: HTMLInputElement = document.querySelector('input');
   const oAddBtn: HTMLElement = document.querySelector('button');
   const oTodoList: HTMLElement = document.querySelector('.todo-list');
-  const todoData: ItodoData[] = [
-    {
-      id: 1,
-      content: '123',
-      completed: true
-    },
-    {
-      id: 2,
-      content: '234',
-      completed: false
-    },
-    {
-      id: 3,
-      content: '345',
-      completed: false
-    },
-  ];
+  const todoData: ItodoData[] = [];
   let id:number = todoData.length;
   const todoEvent: TodoEvent = new TodoEvent(todoData,oTodoList);
 
@@ -35,7 +19,7 @@ import { ItodoData } from "./js/typings";
     const val = oInput.value.trim();
     if(val.length){
       const ret =todoEvent.addTodo(<ItodoData>{
-        id: ++id,
+        id: new Date().getTime(),
         content: val,
         completed: false
       })
