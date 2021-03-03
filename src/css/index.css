@@ -1,0 +1,23 @@
+span {
+  display: inline-block;
+  min-width:335px;
+  margin: 15px 0 0 0;
+}
+.app{
+  width: 500px;
+  padding: 10px;
+  background-color: pink;
+  margin: 0 auto;
+}
+.todo-input{
+  width: 500px;
+}
+.todo-input input{
+  width: 350px;
+  height: 20px;
+  border: radius 5px; 
+}
+button{
+  height: 28px;
+  width: 100px;
+}
