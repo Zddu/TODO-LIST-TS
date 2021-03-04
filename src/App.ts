@@ -5,9 +5,7 @@ import { ItodoData } from "./js/typings";
   const oAddBtn: HTMLElement = document.querySelector('button');
   const oTodoList: HTMLElement = document.querySelector('.todo-list');
   const todoData: ItodoData[] = [];
-  let id:number = todoData.length;
   const todoEvent: TodoEvent = new TodoEvent(todoData,oTodoList);
-
   function init(): void {
     bindEvent()
   }
@@ -32,7 +30,7 @@ import { ItodoData } from "./js/typings";
   function handleListClick(e: MouseEvent): void {
     const tar = e.target as HTMLElement;
     const tagName = tar.tagName.toLowerCase();
-    
+    let id = parseInt(tar.dataset.id);
     if (tagName === 'input' || tagName === 'button') {
       switch (tagName) {
         case 'input':

@@ -1,6 +1,6 @@
 import TodoDom from "./TodoDom";
 import { ItodoData } from "./typings";
-import {getTodoList} from "./TodoService";
+import {getTodoList, removeTodo} from "./TodoService";
 import {createTemplate} from "./utils";
 
 /**
@@ -37,6 +37,7 @@ class TodoEvent extends TodoDom {
     }
     return 101;
   }
+  @removeTodo
   public removeTodo(id: number, target: HTMLElement) {
     this.tododata = this.tododata.filter((item: ItodoData) => {return item.id !== id });
     this.removeItem(target);
